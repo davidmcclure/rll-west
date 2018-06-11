@@ -9,7 +9,11 @@ import './index.scss';
 class App extends Component {
 
   render() {
-    return <h1>RLL West</h1>;
+    return <div id="vega"></div>;
+  }
+
+  componentDidMount() {
+    console.log('test');
   }
 
 }

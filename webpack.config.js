@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
+  devtool: 'eval-source-map',
   entry: './src/index.js',
   output: {
     filename: 'script.js',
@@ -15,6 +16,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'RLL West',
       template: require('html-webpack-template'),
+      inject: false,
       appMountId: 'root',
     })
   ],
