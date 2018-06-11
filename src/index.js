@@ -1,6 +1,16 @@
 
 
-import _ from 'lodash';
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 
-console.log('test', _);
+class App extends Component {
+
+  render() {
+    return <h1>RLL West</h1>;
+  }
+
+}
+
+
+ReactDOM.render(<App />, document.getElementById('root'));

@@ -1,9 +1,7 @@
 
 
-const path = require('path');
-
-
-const distDir = path.resolve(__dirname, 'dist')
+const { resolve } = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
@@ -11,10 +9,27 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'script.js',
-    path: distDir
+    path: resolve('dist')
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'RLL West',
+      template: './src/index.pug'
+    })
+  ],
   devServer: {
-    contentBase: distDir,
+    contentBase: resolve('dist'),
     port: 1337
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: '/node_modules',
+        use: {
+          loader: 'babel-loader'
+        }
+      }
+    ]
   }
 };
