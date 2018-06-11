@@ -66,7 +66,7 @@ class App extends Component {
 
             <p>Where a "1" means that the book was assigned on the syllabus, and "0" if not. This data is hard to work with, though, since there are so many columns (one for each syllabus). And it's also really "sparse" - most of the values are 0, since most books will only show up on a handful of syllabi. This makes it hard to reason about how different books relate. For example, books A and B might never show up together on the same syllabus. But, they might both get assigned frequently with book C, which forms an implicit connection between A and B. We want to be able to discover these types of connections.</p>
 
-            <p>One way to do that is to use a technique called "singular value decomposition" to generate a kind of "summary" vector for each book, which can capture these kinds of similarities. This way, instead of representing each book as a huge, 1M-dimension vector mostly filled with zeros, we represent it as a smaller vector (here, 10 dimensions) that will assign the book to a position in the 10-dimensional space that is geometrically close to other books that are assigned in similar types of courses. Then, we can hand these smaller vectors to an algorithm like T-SNE, which further compresses them into just 2 dimensions, which can be visualized.</p>
+            <p>One way to do that is to use a technique called singular value decomposition (SVD) to generate a kind of "summary" vector for each book, which can capture these kinds of similarities. This way, instead of representing each book as a huge vector mostly filled with zeros, we represent it as a much smaller vector (here, 10 dimensions) that will position the book nearby to other texts that are assigned in similar types of courses. Then, we can hand these smaller vectors to an algorithm like T-SNE, which further compresses them into just 2 dimensions, which can be visualized.</p>
 
           </Col>
         </Row>
@@ -74,7 +74,7 @@ class App extends Component {
         <Row>
           <Col>
             <h1 className="display-4">Top 2,000 authors (UMAP)</h1>
-            <p>Here's another version of the same thing, but this time using an algorithm called UMAP instead of T-SNE to do the finale dimensionality reduction, which gives a very different type of layout. Though, the groupings are generally quite similar - eg, that line of texts at the bottom right here (Faulkner, Paine, Jefferson, Thoreau) is basically the same as the cluster at the top left in the first plot. It's interesting here that (modern) literature separates so cleanly from the rest of the texts, whereas classics and philosophy are attached to the larger social sciences / sciences cluster. Though, not too much can be read into the specific organization of these plots, since they always somewhat distort the raw data in one way or another.</p>
+            <p>Here's another version of the same thing, but this time using an algorithm called UMAP instead of T-SNE to do the finale dimensionality reduction, which gives a very different type of layout. Though, the clusters are actually quite similar - eg, that line of texts at the bottom right (Faulkner, Paine, Jefferson, Thoreau) is basically the same as the cluster at the top left in the first plot. It's interesting here that (modern) literature separates so cleanly from the rest of the texts, whereas classics and philosophy are attached to the larger social sciences / sciences cluster. Though, not too much can be read into the specific organization of these plots, since they're always an incomplete representation of the raw data, in one way or another.</p>
             <div id="vega2"></div>
           </Col>
         </Row>
@@ -82,7 +82,7 @@ class App extends Component {
         <Row>
           <Col>
             <h1 className="display-4">~5k random syllabi (T-SNE)</h1>
-            <p>Here's another view of the same data, but reversed - instead of clustering books by which courses they are assigned in, here we're clustering courses by which books they assign. Each dot represents a syllabus, and the colors correspond to the "field" classifications from the first version of the OSP dataset. (Which are far from perfect - this is more accurate in the second version.) Like before, we get a kind of disciplinary atlas - English (green) on the right, economics (red) on the left, philosophy (pink) in the middle, social sciences along the bottom.</p>
+            <p>Here's another view of the same data, but reversed - instead of clustering books by which courses they are assigned in, here we're clustering <em>courses</em> by which books they assign. Each dot represents a syllabus, and the colors correspond to the "field" classifications from the first version of the OSP dataset. (Which are far from perfect - this is more accurate in the second version.) Like before, we get a kind of disciplinary atlas - English (green) on the right, economics (red) on the left, philosophy (pink) in the middle, social sciences along the bottom.</p>
             <div id="vega3" ref="vega"></div>
             <p className="caption">Hover over the dots to see the first 5 texts assigned on each syllabus.</p>
           </Col>
