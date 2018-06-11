@@ -82,8 +82,8 @@ class App extends Component {
         <Row>
           <Col>
             <h1 className="display-4">~5k random syllabi (T-SNE)</h1>
-            <p>Here's another view of the same data, but reversed - instead of clustering books by which courses they are assigned in, here we're clustering courses by which books they assign. Each dot represents a syllabus, and the colors correspond to the "field" classifications from the first version of the OSP data. (Which are far from perfect - this is more accurate in the second version.) Like before, we get a kind of disciplinary atlas - English (green) on the right, Economics (red) on the left, etc.</p>
-            <div id="vega3"></div>
+            <p>Here's another view of the same data, but reversed - instead of clustering books by which courses they are assigned in, here we're clustering courses by which books they assign. Each dot represents a syllabus, and the colors correspond to the "field" classifications from the first version of the OSP dataset. (Which are far from perfect - this is more accurate in the second version.) Like before, we get a kind of disciplinary atlas - English (green) on the right, economics (red) on the left, philosophy (pink) in the middle, social sciences along the bottom.</p>
+            <div id="vega3" ref="vega"></div>
             <p className="caption">Hover over the dots to see the first 5 texts assigned on each syllabus.</p>
           </Col>
         </Row>
@@ -94,21 +94,26 @@ class App extends Component {
 
   componentDidMount() {
 
+    const width = ReactDOM
+      .findDOMNode(this.refs.vega)
+      .getBoundingClientRect()
+      .width * 0.9;
+
     embed('#vega1', 'data/authors-tsne.json', {
       defaultStyle: true,
-      width: 1000,
+      width: width,
       height: 800,
     });
 
     embed('#vega2', 'data/authors-umap-pruned.json', {
       defaultStyle: true,
-      width: 1000,
+      width: width,
       height: 800,
     });
 
     embed('#vega3', 'data/docs-tsne.json', {
       defaultStyle: true,
-      width: 1000,
+      width: width,
       height: 800,
     });
 
