@@ -1,4 +1,15 @@
 
+@import "~bootstrap/scss/bootstrap";
+
 body {
   background-color: whitesmoke;
+}
+
+h1.display-4 {
+  text-align: center;
+  font-size: 40px;
+}
+
+.row {
+  margin-top: 4em;
 }
