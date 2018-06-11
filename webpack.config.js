@@ -14,7 +14,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'RLL West',
-      template: './src/index.pug'
+      template: require('html-webpack-template'),
+      appMountId: 'root',
     })
   ],
   devServer: {
